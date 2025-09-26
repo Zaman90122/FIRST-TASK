@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>To-Do List</title>
+  </head>
+  <style>
+    .todo {
+      text-align: center;
+      background-color: antiquewhite;
+    }
+    .list {
+      font-weight: bold;
+    }
+  </style>
+  <body>
+    <h1 class="todo">My To-Do List</h1>
+    <form action="/add" method="post">
+      <input type="text" name="task" placeholder="Enter a task" required />
+      <button type="submit" class="List">Add</button>
+    </form>
+    <ul>
+      {% for t in tasks %}
+        <li>
+          {% if t.2 %}
+            <s>{{ t.1 }}</s>
+          {% else %}
+            {{ t.1 }} <a href="/done/{{ t.0 }}">✅</a>
+          {% endif %}
+          <a href="/delete/{{ t.0 }}">❌</a>
+        </li>
+      {% endfor %}
+    </ul>
+  </body>
+</html>
